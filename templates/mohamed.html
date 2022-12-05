@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home</title>
-<link rel="stylesheet" type="text/css" id="applicationStylesheet" href="static/styles.css"/>
-<script id="applicationScript" type="text/javascript" src="static/scripts.js"></script>
-</head>
-<body>
-<div id="Web_1920__1">
+{% extends "lay.html" %}
+
+
+
+	{% block main %}
 	<div id="News_Item">
 		<svg class="Bg">
 			<rect id="Bg" rx="20" ry="20" x="0" y="0" width="511" height="756.564">
@@ -24,31 +17,38 @@
 			</div>
 		</div>
 		<div id="Image">
-			<img id="Mask" src="static/images/Mask.png" srcset="static/images/Mask.png 1x, static/images/Mask@2x.png 2x">
+			<img id="Mask" src="static/Mask.png" srcset="static/Mask.png 1x, static/Mask@2x.png 2x">
 
-			<img id="Image_n" src="static/images/Image_n.png" srcset="static/images/Image_n.png 1x, static/images/Image_n@2x.png 2x">
+			<img id="Image_n" src="static/Image_n.png" srcset="static/Image_n.png 1x, static/Image_n@2x.png 2x">
 
 			</svg>
 		</div>
 	</div>
-	<svg class="Path_1" viewBox="0 0 1920 94">
-		<path id="Path_1" d="M 0 0 L 1920 0 L 1920 94 L 0 94 L 0 0 Z">
-		</path>
-	</svg>
-	<div id="The_Next_Coders_Society">
-		<span>The Next Coder's Society</span>
-	</div>
+
+	{% block nav %}
+
 	<div id="Lets_Code">
-		<span>Let's Code</span>
+		<a style="text-decoration: none; color: white;" href="#our_programs">
+			<span>Let's Code</span>
+		</a>
 	</div>
 	<div id="Sign_In">
-		<span>Sign In</span>
+		<a style="text-decoration: none; color: white;" href="/login">
+			<span>Sign In</span>
+		</a>
 	</div>
 	<div id="Build_a_World_of_Code">
-		<span>Build a World of Code</span>
+		<a style="text-decoration: none; color: white;" href="#Build">
+			<span>Build a World of Code</span>
+		</a>
 	</div>
-
-	<img id="kids_coding" src="static/images/kids_coding.png" srcset="static/images/kids_coding.png 1x, static/images/kids_coding@2x.png 2x">
+	<div id="Why__Code">
+		<a style="text-decoration: none; color: white;" href="#why">
+			<span>Why  Code</span>
+		</a>
+	</div>
+	{% endblock %}
+	<img id="kids_coding" src="static/kids_coding.png" srcset="static/kids_coding.png 1x, static/kids_coding@2x.png 2x">
 
 	<svg class="Rectangle_2">
 		<rect id="Rectangle_2" rx="0" ry="0" x="0" y="0" width="1920" height="986">
@@ -61,7 +61,9 @@
 		<span>Empowering the </span><span style="font-style:normal;font-weight:bold;color:rgba(45,143,241,1);text-transform:uppercase;">next </span><span>generation with code.</span>
 	</div>
 	<div id="Our_Programs">
-		<span>Our Programs</span>
+		<section id="our_programs">
+			<span>Our Programs</span>
+		</section>
 	</div>
 	<div id="At_the_Next_Coders_Society_we_">
 		<span>At the Next Coders’ Society we offer a wide range of free programs, using code.org curriculum, to help you bring your ideas to life. This summer our course offerings include Web development, App, Games Development and Even AI. </span>
@@ -80,7 +82,7 @@
 				<rect id="Mask_ba" rx="5" ry="5" x="0" y="0" width="468.417" height="425.833">
 				</rect>
 			</svg>
-			<img id="Image_ba" src="static/images/Image_ba.png" srcset="static/images/Image_ba.png 1x, static/images/Image_ba@2x.png 2x">
+			<img id="Image_ba" src="static/Image_ba.png" srcset="static/Image_ba.png 1x, static/Image_ba@2x.png 2x">
 
 			</svg>
 		</div>
@@ -99,7 +101,7 @@
 				<rect id="Mask_bc" rx="5" ry="5" x="0" y="0" width="468.417" height="425.833">
 				</rect>
 			</svg>
-			<img id="Image_bc" src="static/images/Image_bc.png" srcset="static/images/Image_bc.png 1x, static/images/Image_bc@2x.png 2x">
+			<img id="Image_bc" src="static/Image_bc.png" srcset="static/Image_bc.png 1x, static/Image_bc@2x.png 2x">
 
 			</svg>
 		</div>
@@ -118,26 +120,25 @@
 			<span>Game Development</span>
 		</div>
 	</div>
-<!--	<svg class="Rectangle_3">-->
-<!--		<rect id="Rectangle_3" rx="30" ry="30" x="0" y="0" width="374" height="114">-->
-<!--		</rect>-->
-<!--	</svg>-->
+
 	<div  id="Register_Now">
-		<button class="button-18" role="button" onclick="window.location.href='/register';">Register</button>
+			<button class="button-18" role="button" onclick="window.location.href='/register';">Register</button>
 	</div>
 	<svg class="Path_2" viewBox="0 730 1 1">
 		<path id="Path_2" d="M 0 730 L 0 730 Z">
 		</path>
 	</svg>
 	<div id="Why_Code_">
-		<span>Why Code</span><br/>
+			<span>Why Code</span>
 	</div>
 	<svg class="Path_3" viewBox="0 0 1920 3603.2">
 		<path id="Path_3" d="M 0 0 L 970.2714233398438 0 L 1920 0 L 1920 3603.200439453125 L 0 3603.200439453125 L 0 0 Z">
 		</path>
 	</svg>
 	<div id="Why_Code">
-		<span>Why Code</span>
+		<section id="why">
+			<span>Why Code</span>
+		</section>
 	</div>
 	<div id="Have_you_ever_wondered_how_the">
 		<span>Have you ever wondered how the game Flappy bird was made? How about websites like Google or Facebook? Perhaps other apps on your phone like a calculator or maybe instagram? Whether or not you have an idea how to make any of these projects, you could probably guess that the people who did knew how to code. That is the beautiful thing about programming.</span><span style="font-style:normal;font-weight:bold;">  If you can think of it, you can probably code it! <br/></span><br/><span>There are many other reasons why coding is useful</span><br/>
@@ -160,7 +161,7 @@
 		<rect id="Rectangle_8" rx="0" ry="0" x="0" y="0" width="1599" height="859">
 		</rect>
 	</svg>
-	<img id="future_job" src="static/images/future_job.png" srcset="static/images/future_job.png 1x, static/images/future_job@2x.png 2x">
+	<img id="future_job" src="static/future_job.png" srcset="static/future_job.png 1x, static/future_job@2x.png 2x">
 
 	<div id="Learn_How_to_Think_">
 		<span>Learn How to Think </span>
@@ -178,7 +179,7 @@
 		<rect id="Rectangle_10" rx="0" ry="0" x="0" y="0" width="1599" height="859">
 		</rect>
 	</svg>
-	<img id="collaboration" src="static/images/collaboration.png" srcset="static/images/collaboration.png 1x, static/images/collaboration@2x.png 2x">
+	<img id="collaboration" src="static/collaboration.png" srcset="static/collaboration.png 1x, static/collaboration@2x.png 2x">
 
 	<div id="Join_a_community_of_creators">
 		<span>Join a community of creators</span>
@@ -187,7 +188,9 @@
 		<span>Sharing is a big part of the coding process. By sharing your creations with friends and family, you can  reinforces what you have learned and gain confidence. <br/><br/>Additionally, you can meet programmers from around the world by asking questions, collaborating on projects, and uploading your creations for the world to enjoy!</span>
 	</div>
 	<div id="Build_a_world_of_code">
-		<span>Build a world of code</span>
+		<section id="Build">
+			<span>Build a world of code</span>
+		</section>
 	</div>
 	<div id="Community_is_at_heart_of_value">
 		<span>Community is at heart of values we uphold at the next coders' society. That's why one of our biggest aims is to create local leaders for computer science education. Last year, we trained more than forty leaders around the country on cs advocacy, impacting more than six hundred students through coding workshops and activities. Join the impact and #BuildAWorldOfCode</span>
@@ -196,27 +199,20 @@
 	<div id="Apply_Now">
 		<button class="button-18" role="button" onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLScAi5Yy7vCVD6w9a-qGLF29DHh90syWGoHobDTqytxAL9r-7Q/viewform';">Apply Now</button>
 	</div>
-	<div id="Why__Code">
-		<span>Why  Code</span>
-	</div>
-	<img id="Tech_Leaders" src="static/images/Tech_Leaders.png" srcset="static/images/Tech_Leaders.png 1x, static/images/Tech_Leaders@2x.png 2x">
+
+	<img id="Tech_Leaders" src="static/Tech_Leaders.png" srcset="static/Tech_Leaders.png 1x, static/Tech_Leaders@2x.png 2x">
 
 	<div id="Besides_becoming_a_role_model_">
 		<span>Besides becoming a role model yourself, you can also interact with and learn from young professionals and experts in tech whom we host on our platform. Check out some of our popular past events.</span>
 	</div>
-	<img id="event_1" src="static/images/event_1.png" srcset="static/images/event_1.png 1x, static/images/event_1@2x.png 2x">
+	<a href="https://www.facebook.com/flx/warn/?u=https%3A%2F%2Ffb.me%2Fe%2F1BZjRHiYq&h=AT0yp93qV7spKJK89SdOoifRgtuHKQoSgRedBa4xbKfOHuocUUie6Sdec4HTA4EMfBn23ANDGfdawa-fIpZTqmSI426iD2lIbdf7UMmk6Gnvgt3BqEL9fcefsG3Y"><img id="event_1" src="static/event_1.png" srcset="static/event_1.png 1x, static/event_1@2x.png 2x"></a>
 
-	<a href="https://www.facebook.com/watch/?extid=CL-UNK-UNK-UNK-IOS_GK0T-GK1C&mibextid=2Rb1fB&v=752136266112493"><img id="event_2" src="static/images/event_2.png" srcset="static/event_2.png 1x, static/event_2@2x.png 2x"></a>
+	<a href="https://www.facebook.com/watch/?extid=CL-UNK-UNK-UNK-IOS_GK0T-GK1C&mibextid=2Rb1fB&v=752136266112493"><img id="event_2" src="static/event_2.png" srcset="static/event_2.png 1x, static/event_2@2x.png 2x"></a>
 
-	<a href="https://www.facebook.com/watch/?extid=CL-UNK-UNK-UNK-IOS_GK0T-GK1C&mibextid=2Rb1fB&v=712155870011350"><img id="event_3" src="static/images/event_3.png" srcset="static/event_3.png 1x, static/event_3@2x.png 2x"></a>
+	<a href="https://www.facebook.com/watch/?extid=CL-UNK-UNK-UNK-IOS_GK0T-GK1C&mibextid=2Rb1fB&v=712155870011350"><img id="event_3" src="static/event_3.png" srcset="static/event_3.png 1x, static/event_3@2x.png 2x"></a>
 
-	<svg class="Path_4" viewBox="0 0 1920 186">
-		<path id="Path_4" d="M 0 0 L 1920 0 L 1920 186 L 0 186 L 0 0 Z">
-		</path>
-	</svg>
-	<div id="The_Next_Coders_Society_cc">
-		<span>The Next Coder's Society</span>
-	</div>
+{% endblock %}
+
 </div>
 </body>
 </html>

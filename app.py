@@ -18,6 +18,12 @@ db = SQL("sqlite:///courses.db")
 
 # if not os.environ.get("API_KEY"):
 #     raise RuntimeError("API_KEY not set")
+
+@app.route("/", methods=['POST', 'GET'])
+def main():
+    return render_template("mohamed.html")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
@@ -90,7 +96,7 @@ def login():
         session["user_id"] = rows[0]["id"]
 
         # Redirect user to home page
-        return redirect("/")
+        return redirect("/dashboard")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -149,7 +155,7 @@ def search():
 
 
 
-@app.route("/", methods=['POST', 'GET'])
+@app.route("/dashboard", methods=['POST', 'GET'])
 @login_required
 def dashboard():
     user_id = session["user_id"]
