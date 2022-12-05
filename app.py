@@ -142,47 +142,47 @@ def search():
 
     return render_template("search.html", searched_courses=searched)
 
-@app.route("/", methods=['POST', 'GET'])
-@login_required
-def dashboard():
-    return render_template("mohamed.html")
-
-#
-#
 # @app.route("/", methods=['POST', 'GET'])
 # @login_required
 # def dashboard():
-#     user_id = session["user_id"]
-#
-#     if request.method == "POST":
-#
-#         course = request.form.get("button")
-#         print(course)
-#
-#         if(course):
-#             # messages = json.dumps({"main": "Condition failed on page baz"})
-#             # session['messages'] = messages
-#             return redirect(url_for('.course', c=course))
-#
-#         value = request.form.get("clarinets")
-#         unvalue = request.form.get("unregister")
-#         if request.form.get("clarinets"):
-#             print("hi")
-#             db.execute("INSERT INTO registered_courses (course_name, user_id) VALUES(?, ?)", value, user_id)
-#         elif unvalue:
-#             print("hi")
-#             db.execute("DELETE FROM registered_courses WHERE course_name= ?", unvalue)
-#
-#     flag = db.execute("Select Admin From users Where id = ?", user_id)[0]["Admin"]
-#     print(flag)
-#
-#     submitted_courses = db.execute("SELECT course_name FROM registered_courses WHERE user_id = ?", user_id)
-#
-#     courses = db.execute(
-#         "SELECT course_name FROM available_courses WHERE course_name NOT IN (SELECT course_name FROM registered_courses WHERE user_id = ?)",
-#         user_id)
-#
-#     return render_template("dashboard.html", available_courses=courses, registered_courses=submitted_courses, flag=flag)
+#     return render_template("mohamed.html")
+
+
+
+@app.route("/", methods=['POST', 'GET'])
+@login_required
+def dashboard():
+    user_id = session["user_id"]
+
+    if request.method == "POST":
+
+        course = request.form.get("button")
+        print(course)
+
+        if(course):
+            # messages = json.dumps({"main": "Condition failed on page baz"})
+            # session['messages'] = messages
+            return redirect(url_for('.course', c=course))
+
+        value = request.form.get("clarinets")
+        unvalue = request.form.get("unregister")
+        if request.form.get("clarinets"):
+            print("hi")
+            db.execute("INSERT INTO registered_courses (course_name, user_id) VALUES(?, ?)", value, user_id)
+        elif unvalue:
+            print("hi")
+            db.execute("DELETE FROM registered_courses WHERE course_name= ?", unvalue)
+
+    flag = db.execute("Select Admin From users Where id = ?", user_id)[0]["Admin"]
+    print(flag)
+
+    submitted_courses = db.execute("SELECT course_name FROM registered_courses WHERE user_id = ?", user_id)
+
+    courses = db.execute(
+        "SELECT course_name FROM available_courses WHERE course_name NOT IN (SELECT course_name FROM registered_courses WHERE user_id = ?)",
+        user_id)
+
+    return render_template("dashboard.html", available_courses=courses, registered_courses=submitted_courses, flag=flag)
 
 
 @app.route("/add", methods=['POST', 'GET'])
