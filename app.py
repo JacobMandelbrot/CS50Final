@@ -19,9 +19,11 @@ db = SQL("sqlite:///courses.db")
 # if not os.environ.get("API_KEY"):
 #     raise RuntimeError("API_KEY not set")
 
-@app.route("/", methods=['POST', 'GET'])
-def main():
-    return render_template("mohamed.html")
+# @app.route("/", methods=['POST', 'GET'])
+# def main():
+#     if session.get("user_id") is None:
+#         return render_template("mohamed.html")
+#     else: return_template("")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -96,7 +98,7 @@ def login():
         session["user_id"] = rows[0]["id"]
 
         # Redirect user to home page
-        return redirect("/dashboard")
+        return redirect("/")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -124,7 +126,6 @@ def logout():
 @login_required
 def search():
     q = request.args.get("q")
-    print(q)
     user_id = session["user_id"]
 
     if q:
@@ -155,15 +156,16 @@ def search():
 
 
 
-@app.route("/dashboard", methods=['POST', 'GET'])
-@login_required
+@app.route("/", methods=['POST', 'GET'])
 def dashboard():
+    if session.get("user_id") is None:
+        return render_template("mohamed.html")
+
     user_id = session["user_id"]
 
     if request.method == "POST":
 
         course = request.form.get("button")
-        print(course)
 
         if(course):
             # messages = json.dumps({"main": "Condition failed on page baz"})
@@ -173,14 +175,12 @@ def dashboard():
         value = request.form.get("clarinets")
         unvalue = request.form.get("unregister")
         if request.form.get("clarinets"):
-            print("hi")
             db.execute("INSERT INTO registered_courses (course_name, user_id) VALUES(?, ?)", value, user_id)
         elif unvalue:
             print("hi")
             db.execute("DELETE FROM registered_courses WHERE course_name= ?", unvalue)
 
     flag = db.execute("Select Admin From users Where id = ?", user_id)[0]["Admin"]
-    print(flag)
 
     submitted_courses = db.execute("SELECT course_name FROM registered_courses WHERE user_id = ?", user_id)
 
@@ -198,13 +198,17 @@ def add():
     if request.method == "POST":
         course_name = request.form.get("course_name")
         description = request.form.get("description")
+        file = request.form.get("URL")
+        print(file)
         if course_name and description:
-            db.execute("INSERT INTO available_courses (course_name, description) VALUES(?, ?)", course_name,
-                       description)
+            db.execute("INSERT INTO available_courses (course_name, description, file) VALUES(?, ?, ?)", course_name,
+                       description, file)
         elif not course_name:
             return apology("must provide course name", 403)
         elif not description:
             return apology("must provide description", 403)
+        elif not file:
+            return apology("must provide file", 403)
 
     return render_template("add.html")
 
@@ -219,15 +223,15 @@ def course():
     c = request.args['c']
 
     description = db.execute("SELECT description FROM available_courses WHERE course_name = ? ", c)[0]['description']
+    url = db.execute("SELECT file FROM available_courses WHERE course_name = ? ", c)[0]['file']
 
-    return render_template("course_page.html", course_name=c, description=description)
+    return render_template("course_page.html", course_name=c, description=description, url=url)
 
 @app.route("/available", methods=['POST', 'GET'])
 @login_required
 def available():
 
     user_id = session["user_id"]
-    print("hi")
     if request.method == "POST":
 
         course = request.form.get("button")
@@ -235,7 +239,8 @@ def available():
         if course:
             db.execute("INSERT INTO registered_courses (user_id, course_name) VALUES(?,?)", user_id, course)
 
-    available_courses = db.execute("SELECT * FROM available_courses")
+
+    available_courses = db.execute("SELECT * FROM available_courses WHERE course_name NOT IN (SELECT course_name FROM registered_courses WHERE user_id = ?)", user_id)
     return render_template("available.html", available_courses=available_courses)
 
 

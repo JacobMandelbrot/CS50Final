@@ -1,18 +1,28 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Add A Course
+Add A Course
 {% endblock %}
 
 {% block main %}
-    <form action="/add" method="post">
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="course_name" name="course_name" placeholder="Add the Course Name" type="text">
-        </div>
+</script>
 
-        <div class="mb-3">
-            <textarea class="form-control mx-auto w-auto" name="description" placeholder="Add Description" type="description" rows="10" cols="100"></textarea>
-        </div>
-        <button class="btn btn-primary" type="submit">Add Course</button>
-    </form>
+<form action="/add" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="course_name" name="course_name"
+               placeholder="Add the Course Name" type="text">
+    </div>
+
+    <div class="mb-3">
+        <textarea class="form-control mx-auto w-auto" name="description" placeholder="Add Description" rows="10"
+                  cols="50"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="URL" name="URL"
+               placeholder="Add the Course Link" type="text">
+    </div>
+
+    <button class="btn btn-primary" type="submit">Add Course</button>
+</form>
 {% endblock %}
